@@ -1,0 +1,40 @@
+# PyCharm
+# http://www.jetbrains.com/pycharm/webhelp/project.html
+.iml
+# Local development settings
+*.env
+
+# Django development server PID file
+*.pid
+
+# Database files
+db.sqlite3
+
+# Static files directory
+/static/
+
+# Media files directory
+/media/
+
+# Log files
+*.log
+
+# Virtual environment
+venv/
+.env/
+
+# IDE-specific files (PyCharm, VSCode, etc.)
+.vscode/
+.idea/
+
+# Compiled Python files
+*.pyc
+
+# Coverage reports
+htmlcov/
+
+# Mac OS / macOS files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db

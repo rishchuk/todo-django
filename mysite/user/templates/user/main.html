@@ -1,0 +1,44 @@
+{% extends 'user/layout.html' %}
+
+{% block title %}Test{% endblock %}
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<div class="jumbotron text-center">
+    <div class="container">
+        <h2 class="display-4">A simple to-do list for you</h2>
+    </div>
+    <div class="container">
+        <h6 class="lead">
+            Register and organize your tasks and complete them
+        </h6>
+    </div>
+    <div class="container">
+
+        <div class="">
+            <a href="{% url 'register_page' %}" class="btn btn-primary btn-lg">Get Started -&gt;</a><br>
+            <span class="text-muted">It's free</span>
+        </div>
+
+    </div>
+</div>
+{% else %}
+<div class="jumbotron text-center">
+    <div class="container">
+        <h2 class="display-4">A simple to-do list for you</h2>
+    </div>
+    <div class="container">
+        <h6 class="lead">
+            Gjfdglkjfdglkjdflkgjdflkgjlkfdjg
+        </h6>
+    </div>
+    <div class="container">
+
+        <div class="">
+            <a href="{% url 'todo' %}" class="btn btn-primary btn-lg">Go to to-do list -&gt;</a><br>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+{% endblock %}

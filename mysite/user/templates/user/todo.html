@@ -1,0 +1,116 @@
+{% extends 'user/layout.html' %}
+
+{% block title %}To-do list{% endblock %}
+{% block content %}
+<section class="vh-10 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+          {% csrf_token %}
+        <div class="card">
+          <h1 >Todo list Demo App</h1>
+          <div class="card-body p-5">
+            <form method="POST" class="d-flex justify-content-center align-items-center mb-4">
+                {% csrf_token %}
+              <div class="form-outline flex-fill">
+                {{ task.name }}
+                <label class="form-label" for="form2">New task...</label>
+                {{ task.end_date }}
+                <label class="form-label" for="form2">End date...</label>
+              </div>
+                <input href="{% url 'todo' %}" type="submit" value="Add" class="btn btn-info ms-2"/>
+            </form>
+
+            <!-- Tabs navs -->
+            <ul class="nav nav-tabs mb-4 pb-2" id="ex1" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" name="all" id="ex1-tab-1" data-mdb-toggle="tab" href="{% url 'todo' %}" role="tab"
+                  aria-controls="ex1-tabs-1" aria-selected="true">All</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="{% url 'todo' %}?status=active" role="tab"
+                  aria-controls="ex1-tabs-2" aria-selected="false">Active</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="ex1-tab-3" data-mdb-toggle="tab" href="{% url 'todo' %}?status=completed" role="tab"
+                  aria-controls="ex1-tabs-3" aria-selected="false">Completed</a>
+              </li>
+            </ul>
+            <!-- Tabs navs -->
+
+            <!-- Tabs content -->
+
+            <div class="tab-content" id="ex1-content">
+              <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
+                aria-labelledby="ex1-tab-1">
+                <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                      {% for task in tasks %}
+                      <tr>
+                        <td>{{ task.id }}</td>
+                        <td>{{ task.name }}</td>
+                          <td>{% if task.status %}<a href="{% url 'task_edit' task.id %}">Completed</a>
+                              {% else %}<a href="{% url 'task_edit' task.id %}">Incomplete</a>{% endif %}</td>
+                          <td>{{ task.end_date }}</td>
+                          <td><a href="#">Edit</a></td>
+                          <td><a href="{% url 'task_delete' task.id %}">Delete</a></td>
+                      </tr>
+                      {% endfor %}
+                </tbody>
+              </table>
+              </div>
+
+              <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                <ul class="list-group mb-0">
+                  <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+                    style="background-color: #f4f6f7;">
+                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
+                    Morbi leo risus
+                  </li>
+                  <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+                    style="background-color: #f4f6f7;">
+                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
+                    Porta ac consectetur ac
+                  </li>
+                  <li class="list-group-item d-flex align-items-center border-0 mb-0 rounded"
+                    style="background-color: #f4f6f7;">
+                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
+                    Vestibulum at eros
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                <ul class="list-group mb-0">
+                  <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+                    style="background-color: #f4f6f7;">
+                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
+                    <s>Cras justo odio</s>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+                    style="background-color: #f4f6f7;">
+                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
+                    <s>Dapibus ac facilisis in</s>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Tabs content -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
